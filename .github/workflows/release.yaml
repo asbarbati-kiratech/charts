@@ -1,0 +1,39 @@
+name: Release Helm Chart
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: azure/setup-helm@v5
+
+      - name: Update dependencies
+        run: |
+          helm dependency update charts/grafana-provisioning
+
+      - name: Login GHCR
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | \
+          helm registry login ghcr.io \
+            -u ${{ github.actor }} \
+            --password-stdin
+
+      - name: Package
+        run: |
+          helm package charts/grafana-provisioning
+
+      - name: Push
+        run: |
+          helm push *.tgz \
+          oci://ghcr.io/${{ github.repository_owner }}/charts

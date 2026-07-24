@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "global": {
+      "type": "object",
+      "description": "Platform-injected global values (for example from Krateo chart-inspector).",
+      "additionalProperties": true
+    },
+    "teamName": {
+      "type": "string",
+      "title": "Your Team",
+      "description": "Your team.",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[a-zA-Z0-9 _-]+$"
+    },
+    "appName": {
+      "type": "string",
+      "title": "Your Application name",
+      "description": "Your Application name.",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[a-zA-Z0-9 _-]+$"
+    },
+    "form": {
+      "type": "object",
+      "title": "Portal Page Form Configuration",
+      "description": "Configuration for portal page form display.",
+      "properties": {
+        "alphabeticalOrder": {
+          "type": "boolean",
+          "title": "Alphabetical Order",
+          "description": "Display form fields in alphabetical order.",
+          "default": false
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "teamName",
+    "appName"
+  ]
+}

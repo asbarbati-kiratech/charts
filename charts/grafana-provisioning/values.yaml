@@ -1,0 +1,15 @@
+createPortalPage: true
+portalPageNamespace: ""
+teamName: superteam
+appName: miasuperapp
+form:
+  alphabeticalOrder: false
+global:
+  compositionName: <release-name>
+  compositionNamespace: <release-namespace>
+  compositionInstalledVersion: "v0-1-4"
+  compositionApiVersion: "composition.krateo.io/v0-1-4"
+  compositionGroup: "composition.krateo.io"
+  compositionResource: "grafanaProvisioningDashboard"
+  compositionKind: "grafanaProvisioningDashboard"
+  krateoNamespace: "krateo-system"
