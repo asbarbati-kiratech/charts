@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: grafana-dashboard-kubernetes
+  name: grafana-dashboard-{{ randAlphaNum 12 }}
   namespace: {{ .Release.Namespace }}
   labels:
     grafana_dashboard: {{ randAlphaNum 12 | lower | quote }}
 data:
-  kubernetes.json: |
+  dashboard.json: |
     {
       "annotations": [
         {
@@ -147,8 +147,8 @@ data:
             "staticOptions": [
               {
                 "properties": {
-                  "text": "{{ .Values.teamName | quote }}",
-                  "value": "{{ .Values.teamName | quote }}"
+                  "text": "{{ .Values.teamName  }}",
+                  "value": "{{ .Values.teamName }}"
                 },
                 "text": "TEAMNAME",
                 "value": "TEAMNAME"
@@ -187,8 +187,8 @@ data:
             "staticOptions": [
               {
                 "properties": {
-                  "text": "{{ .Values.appName | quote }}",
-                  "value": "{{ .Values.appName | quote }}"
+                  "text": "{{ .Values.appName }}",
+                  "value": "{{ .Values.appName }}"
                 },
                 "text": "APPNAME",
                 "value": "APPNAME"
