@@ -15,7 +15,7 @@ data:
         "namespace": "default",
         "generation": 1,
         "labels": {
-          "grafana.app/deprecatedInternalID": "{{ randNum 12 }}"
+          "grafana.app/deprecatedInternalID": "{{ randNumeric 8 }}"
         },
         "annotations": {
           "grafana.app/createdBy": "user:aft31rnpdjb40a",
