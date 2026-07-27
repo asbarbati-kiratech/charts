@@ -8,193 +8,221 @@ metadata:
 data:
   dashboard.json: |
     {
-      "annotations": [
-        {
-          "kind": "AnnotationQuery",
-          "spec": {
-            "builtIn": true,
-            "enable": true,
-            "hide": true,
-            "iconColor": "rgba(0, 211, 255, 1)",
-            "name": "Annotations & Alerts",
-            "query": {
-              "datasource": {
-                "name": "-- Grafana --"
+      "apiVersion": "dashboard.grafana.app/v2",
+      "kind": "Dashboard",
+      "metadata": {
+        "name": "{{ .Values.teamName |lower }}-{{ .Values.appName |lower }}",
+        "namespace": "default",
+        "generation": 1,
+        "labels": {
+          "grafana.app/deprecatedInternalID": "{{ randNum 12 }}"
+        },
+        "annotations": {
+          "grafana.app/createdBy": "user:aft31rnpdjb40a",
+          "grafana.app/folder": "",
+          "grafana.app/saved-from-ui": "Grafana v13.1.1 (e784b7782a)",
+          "grafana.app/updatedBy": "user:aft31rnpdjb40a",
+          "grafana.app/updatedTimestamp": "2026-07-24T14:44:57Z"
+        }
+      },
+      "spec": {
+        "annotations": [
+          {
+            "kind": "AnnotationQuery",
+            "spec": {
+              "query": {
+                "kind": "DataQuery",
+                "group": "grafana",
+                "version": "v0",
+                "datasource": {
+                  "name": "-- Grafana --"
+                },
+                "spec": {}
               },
-              "group": "grafana",
-              "kind": "DataQuery",
-              "spec": {},
-              "version": "v0"
+              "enable": true,
+              "hide": true,
+              "iconColor": "rgba(0, 211, 255, 1)",
+              "name": "Annotations & Alerts",
+              "builtIn": true
             }
           }
-        }
-      ],
-      "cursorSync": "Off",
-      "editable": true,
-      "elements": {
-        "panel-1": {
-          "kind": "Panel",
-          "spec": {
-            "data": {
-              "kind": "QueryGroup",
-              "spec": {
-                "queries": [],
-                "queryOptions": {},
-                "transformations": []
-              }
-            },
-            "description": "",
-            "id": 1,
-            "links": [],
-            "title": "Welcome",
-            "vizConfig": {
-              "group": "text",
-              "kind": "VizConfig",
-              "spec": {
-                "fieldConfig": {
-                  "defaults": {},
-                  "overrides": []
-                },
-                "options": {
-                  "code": {
-                    "language": "plaintext",
-                    "showLineNumbers": false,
-                    "showMiniMap": false
-                  },
-                  "content": "# Welcome\n\nWelcome ${team} with the App ${app}",
-                  "mode": "markdown"
+        ],
+        "cursorSync": "Off",
+        "editable": true,
+        "elements": {
+          "panel-1": {
+            "kind": "Panel",
+            "spec": {
+              "id": 1,
+              "title": "New panel",
+              "description": "",
+              "links": [],
+              "data": {
+                "kind": "QueryGroup",
+                "spec": {
+                  "queries": [],
+                  "transformations": [],
+                  "queryOptions": {}
                 }
               },
-              "version": "13.1.1"
-            }
-          }
-        }
-      },
-      "layout": {
-        "kind": "GridLayout",
-        "spec": {
-          "items": [
-            {
-              "kind": "GridLayoutItem",
-              "spec": {
-                "element": {
-                  "kind": "ElementReference",
-                  "name": "panel-1"
-                },
-                "height": 8,
-                "width": 24,
-                "x": 0,
-                "y": 0
+              "vizConfig": {
+                "kind": "VizConfig",
+                "group": "text",
+                "version": "13.1.1",
+                "spec": {
+                  "options": {
+                    "code": {
+                      "language": "plaintext",
+                      "showLineNumbers": false,
+                      "showMiniMap": false
+                    },
+                    "content": "# Welcome\n\nWelcome {{ .Values.teamName |lower }} with the App {{ .Values.appName |lower }}",
+                    "mode": "markdown"
+                  },
+                  "fieldConfig": {
+                    "defaults": {},
+                    "overrides": []
+                  }
+                }
               }
             }
-          ]
-        }
-      },
-      "links": [],
-      "liveNow": false,
-      "preferences": {
+          }
+        },
         "layout": {
           "kind": "GridLayout",
           "spec": {
-            "items": []
-          }
-        }
-      },
-      "preload": false,
-      "tags": [],
-      "timeSettings": {
-        "autoRefresh": "",
-        "autoRefreshIntervals": [
-          "1d"
-        ],
-        "fiscalYearStartMonth": 0,
-        "from": "now-6h",
-        "hideTimepicker": false,
-        "timezone": "browser",
-        "to": "now"
-      },
-      "title": "BaseTemplate",
-      "variables": [
-        {
-          "kind": "QueryVariable",
-          "spec": {
-            "allowCustomValue": false,
-            "current": {
-              "text": "TEAMNAME",
-              "value": "TEAMNAME"
-            },
-            "definition": "",
-            "hide": "hideVariable",
-            "includeAll": false,
-            "label": "team",
-            "multi": false,
-            "name": "team",
-            "options": [],
-            "query": {
-              "datasource": {
-                "name": "grafana"
-              },
-              "group": "datasource",
-              "kind": "DataQuery",
-              "spec": {},
-              "version": "v0"
-            },
-            "refresh": "onDashboardLoad",
-            "regex": "",
-            "regexApplyTo": "value",
-            "skipUrlSync": false,
-            "sort": "disabled",
-            "staticOptions": [
+            "items": [
               {
-                "properties": {
-                  "text": "{{ .Values.teamName  }}",
-                  "value": "{{ .Values.teamName }}"
-                },
-                "text": "TEAMNAME",
-                "value": "TEAMNAME"
+                "kind": "GridLayoutItem",
+                "spec": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 24,
+                  "height": 8,
+                  "element": {
+                    "kind": "ElementReference",
+                    "name": "panel-1"
+                  }
+                }
               }
             ]
           }
         },
-        {
-          "kind": "QueryVariable",
-          "spec": {
-            "allowCustomValue": false,
-            "current": {
-              "text": "APPNAME",
-              "value": "APPNAME"
-            },
-            "hide": "hideVariable",
-            "includeAll": false,
-            "label": "App",
-            "multi": false,
-            "name": "app",
-            "options": [],
-            "query": {
-              "datasource": {
-                "name": "grafana"
+        "links": [],
+        "liveNow": false,
+        "preload": false,
+        "tags": [],
+        "timeSettings": {
+          "timezone": "browser",
+          "from": "now-6h",
+          "to": "now",
+          "autoRefresh": "",
+          "autoRefreshIntervals": [
+            "5s",
+            "10s",
+            "30s",
+            "1m",
+            "5m",
+            "15m",
+            "30m",
+            "1h",
+            "2h",
+            "1d"
+          ],
+          "hideTimepicker": false,
+          "fiscalYearStartMonth": 0
+        },
+        "title": "BaseTemplate",
+        "variables": [
+          {
+            "kind": "QueryVariable",
+            "spec": {
+              "name": "team",
+              "current": {
+                "text": "",
+                "value": ""
               },
-              "group": "datasource",
-              "kind": "DataQuery",
-              "spec": {},
-              "version": "v0"
-            },
-            "refresh": "onDashboardLoad",
-            "regex": "",
-            "regexApplyTo": "value",
-            "skipUrlSync": false,
-            "sort": "disabled",
-            "staticOptions": [
-              {
-                "properties": {
-                  "text": "{{ .Values.appName }}",
-                  "value": "{{ .Values.appName }}"
+              "label": "team",
+              "hide": "hideVariable",
+              "refresh": "onDashboardLoad",
+              "skipUrlSync": false,
+              "query": {
+                "kind": "DataQuery",
+                "group": "datasource",
+                "version": "v0",
+                "datasource": {
+                  "name": "grafana"
                 },
-                "text": "APPNAME",
-                "value": "APPNAME"
-              }
-            ]
+                "spec": {}
+              },
+              "regex": "",
+              "regexApplyTo": "value",
+              "sort": "disabled",
+              "definition": "",
+              "options": [],
+              "multi": false,
+              "includeAll": false,
+              "allowCustomValue": false,
+              "staticOptions": [
+                {
+                  "text": "TEAMNAME",
+                  "value": "TEAMNAME",
+                  "properties": {
+                    "text": "{{ .Values.teamName |lower }}",
+                    "value": "{{ .Values.teamName |lower }}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "kind": "QueryVariable",
+            "spec": {
+              "name": "app",
+              "current": {
+                "text": "",
+                "value": ""
+              },
+              "label": "App",
+              "hide": "hideVariable",
+              "refresh": "onDashboardLoad",
+              "skipUrlSync": false,
+              "query": {
+                "kind": "DataQuery",
+                "group": "datasource",
+                "version": "v0",
+                "datasource": {
+                  "name": "grafana"
+                },
+                "spec": {}
+              },
+              "regex": "",
+              "regexApplyTo": "value",
+              "sort": "disabled",
+              "options": [],
+              "multi": false,
+              "includeAll": false,
+              "allowCustomValue": false,
+              "staticOptions": [
+                {
+                  "text": "APPNAME",
+                  "value": "APPNAME",
+                  "properties": {
+                    "text": "{{ .Values.appName |lower }}",
+                    "value": "{{ .Values.appName |lower }}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "preferences": {
+          "layout": {
+            "kind": "GridLayout",
+            "spec": {
+              "items": []
+            }
           }
         }
-      ]
+      }
     }
