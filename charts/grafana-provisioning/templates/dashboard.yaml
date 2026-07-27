@@ -132,7 +132,7 @@ data:
           "hideTimepicker": false,
           "fiscalYearStartMonth": 0
         },
-        "title": "BaseTemplate",
+        "title": "{{ .Values.teamName |lower }}-{{ .Values.appName |lower }}",
         "variables": [
           {
             "kind": "QueryVariable",
