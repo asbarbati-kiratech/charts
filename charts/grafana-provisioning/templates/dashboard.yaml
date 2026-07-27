@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: grafana-dashboard-{{ randAlphaNum 12 }}
+  name: grafdash-{{ .Values.teamName |lower }}-{{ .Values.appName |lower }}{{ randAlphaNum 4 | lower }}
   namespace: {{ .Release.Namespace }}
   labels:
     grafana_dashboard: {{ randAlphaNum 12 | lower | quote }}
